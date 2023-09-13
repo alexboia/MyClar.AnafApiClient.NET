@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClar.AnafApiClient.NET", "MyClar.AnafApiClient.NET.csproj", "{97862820-FD64-4BE9-86BD-52F94C5B830B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClar.AnafApiClient.NET.Tests", "..\MyClar.AnafApiClient.NET.Tests\MyClar.AnafApiClient.NET.Tests.csproj", "{F8D82030-52AC-44F6-8AC6-457BD0DE4412}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97862820-FD64-4BE9-86BD-52F94C5B830B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97862820-FD64-4BE9-86BD-52F94C5B830B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97862820-FD64-4BE9-86BD-52F94C5B830B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97862820-FD64-4BE9-86BD-52F94C5B830B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8D82030-52AC-44F6-8AC6-457BD0DE4412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D82030-52AC-44F6-8AC6-457BD0DE4412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8D82030-52AC-44F6-8AC6-457BD0DE4412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D82030-52AC-44F6-8AC6-457BD0DE4412}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55C44E58-DAA1-4813-9D6F-4E898877891B}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MyClar.AnafApiClient.NET/.vs/MyClar.AnafApiClient.NET
+/MyClar.AnafApiClient.NET/bin/Debug/net6.0
+/MyClar.AnafApiClient.NET/obj
+/MyClar.AnafApiClient.NET.Tests/bin/Debug/net6.0
+/MyClar.AnafApiClient.NET.Tests/obj
