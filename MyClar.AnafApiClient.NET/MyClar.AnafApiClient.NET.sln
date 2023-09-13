@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClar.AnafApiClient.NET", "MyClar.AnafApiClient.NET.csproj", "{97862820-FD64-4BE9-86BD-52F94C5B830B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyClar.AnafApiClient.NET", "MyClar.AnafApiClient.NET.csproj", "{97862820-FD64-4BE9-86BD-52F94C5B830B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClar.AnafApiClient.NET.Tests", "..\MyClar.AnafApiClient.NET.Tests\MyClar.AnafApiClient.NET.Tests.csproj", "{F8D82030-52AC-44F6-8AC6-457BD0DE4412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyClar.AnafApiClient.NET.Tests", "..\MyClar.AnafApiClient.NET.Tests\MyClar.AnafApiClient.NET.Tests.csproj", "{F8D82030-52AC-44F6-8AC6-457BD0DE4412}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D73F2DED-58F9-48D1-BEF9-2A41D9146424}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
