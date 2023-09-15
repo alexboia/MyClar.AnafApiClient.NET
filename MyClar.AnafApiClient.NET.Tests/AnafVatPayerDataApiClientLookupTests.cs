@@ -1,4 +1,5 @@
-﻿using MyClar.AnafApiClient.NET.Data;
+﻿using Microsoft.Extensions.Options;
+using MyClar.AnafApiClient.NET.Data;
 using MyClar.AnafApiClient.NET.Serializer;
 using MyClar.AnafApiClient.NET.Tests.Support;
 using MyClar.AnafApiClient.NET.Transport;
@@ -24,7 +25,7 @@ namespace MyClar.AnafApiClient.NET.Tests
 			AnafApiClientVatPayerLookupResponse response = await client
 				.LookupVatPayerDataAsync( new AnafApiClientVatPayerLookupInput( "44932197" ) );
 
-			AssertAllEntitiesFound( response, 
+			AssertAllEntitiesFound( response,
 				"44932197" );
 
 			AnafApiClientVatPayerData vatPayerData =
@@ -42,8 +43,8 @@ namespace MyClar.AnafApiClient.NET.Tests
 				{
 					VatCode = "44932197",
 					Date = now.Date,
-					Name = "... [PLACE VALUE HERE] ...",
-					Address = "... [PLACE VALUE HERE] ...",
+					Name = "MYCLAR SOFTWARE SOLUTIONS S.R.L.",
+					Address = "MUNICIPIUL BUCUREŞTI, SECTOR 3, STR. LT. AUREL BOTEA, NR.1, BL.B5D, SC.1, ET.3, AP.15",
 					RegComNumber = "J40/16243/2021",
 					PhoneNumber = "",
 					FaxNumber = "",
@@ -101,13 +102,13 @@ namespace MyClar.AnafApiClient.NET.Tests
 				{
 					AddressDetails = "",
 					CityCode = "3",
-					CityName = "... [PLACE VALUE HERE] ...",
+					CityName = "Sector 3 Mun. Bucureşti",
 					Country = "",
 					CountyCode = "40",
 					CountyName = "MUNICIPIUL BUCUREŞTI",
 					CountyLicensePlateRegistrationCode = "B",
 					PostalCode = "",
-					StreetName = "... [PLACE VALUE HERE] ...",
+					StreetName = "Str. Lt. Aurel Botea",
 					StreetNumber = "1"
 				} );
 
@@ -116,18 +117,18 @@ namespace MyClar.AnafApiClient.NET.Tests
 				{
 					AddressDetails = "",
 					CityCode = "3",
-					CityName = "... [PLACE VALUE HERE] ...",
+					CityName = "Sector 3 Mun. Bucureşti",
 					Country = "",
 					CountyCode = "40",
 					CountyName = "MUNICIPIUL BUCUREŞTI",
 					CountyLicensePlateRegistrationCode = "B",
 					PostalCode = "",
-					StreetName = "... [PLACE VALUE HERE] ...",
+					StreetName = "Str. Lt. Aurel Botea",
 					StreetNumber = "1"
 				} );
 		}
 
-		private void AssertAllEntitiesFound( AnafApiClientVatPayerLookupResponse response, 
+		private void AssertAllEntitiesFound( AnafApiClientVatPayerLookupResponse response,
 			params string [] vatCodes )
 		{
 			Assert.IsNotNull( response );
@@ -136,9 +137,9 @@ namespace MyClar.AnafApiClient.NET.Tests
 
 			foreach (string vatCode in vatCodes)
 			{
-				AnafApiClientVatPayerData vatPayerData = response.Found.FirstOrDefault( d 
-					=> d.GeneralData != null 
-					&& d.GeneralData.VatCode == vatCode 
+				AnafApiClientVatPayerData vatPayerData = response.Found.FirstOrDefault( d
+					=> d.GeneralData != null
+					&& d.GeneralData.VatCode == vatCode
 				);
 
 				Assert.IsNotNull( vatPayerData );
@@ -260,8 +261,8 @@ namespace MyClar.AnafApiClient.NET.Tests
 				{
 					VatCode = "21609147",
 					Date = now.Date,
-					Name = "... [PLACE VALUE HERE] ...",
-					Address = "... [PLACE VALUE HERE] ...",
+					Name = "SPORT X TEAM SRL",
+					Address = "JUD. HUNEDOARA, MUN. DEVA, ALEEA TRANDAFIRILOR, BL.3, SC.1, AP.1",
 					RegComNumber = "J20/608/2007",
 					PhoneNumber = "0728285850",
 					FaxNumber = "",
@@ -328,13 +329,13 @@ namespace MyClar.AnafApiClient.NET.Tests
 				{
 					AddressDetails = "",
 					CityCode = "170",
-					CityName = "... [PLACE VALUE HERE] ...",
+					CityName = "Mun. Deva",
 					Country = "",
 					CountyCode = "20",
 					CountyName = "HUNEDOARA",
 					CountyLicensePlateRegistrationCode = "HD",
 					PostalCode = "330007",
-					StreetName = "... [PLACE VALUE HERE] ...",
+					StreetName = "Aleea Trandafirilor",
 					StreetNumber = ""
 				} );
 
@@ -343,13 +344,13 @@ namespace MyClar.AnafApiClient.NET.Tests
 				{
 					AddressDetails = "",
 					CityCode = "170",
-					CityName = "... [PLACE VALUE HERE] ...",
+					CityName = "Mun. Deva",
 					Country = "",
 					CountyCode = "20",
 					CountyName = "HUNEDOARA",
 					CountyLicensePlateRegistrationCode = "HD",
 					PostalCode = "330007",
-					StreetName = "... [PLACE VALUE HERE] ...",
+					StreetName = "Aleea Trandafirilor",
 					StreetNumber = ""
 				} );
 		}
@@ -358,9 +359,9 @@ namespace MyClar.AnafApiClient.NET.Tests
 		public async Task Test_CanGetLookupData_WhenValidVatCodesGiven_MultipleVatCodes()
 		{
 			DateTime now = DateTime.Now;
-			IAnafVatPayerDataLookupClient client = 
+			IAnafVatPayerDataLookupClient client =
 				GetAnafVatPayerDataApiClient();
-			
+
 			AnafApiClientVatPayerLookupResponse response = await client
 				.LookupVatPayerDataAsync( new List<AnafApiClientVatPayerLookupInput>()
 				{
@@ -368,14 +369,14 @@ namespace MyClar.AnafApiClient.NET.Tests
 					new AnafApiClientVatPayerLookupInput( "21609147")
 				} );
 
-			AssertAllEntitiesFound( response, 
-				"44932197", 
+			AssertAllEntitiesFound( response,
+				"44932197",
 				"21609147" );
 
 			AnafApiClientVatPayerData vatPayerData_44932197 = response.Found
 				.FirstOrDefault( d => d.GeneralData.VatCode == "44932197" );
 
-			AssertVatPayerDataCorrect_44932197( vatPayerData_44932197, 
+			AssertVatPayerDataCorrect_44932197( vatPayerData_44932197,
 				now );
 
 			AnafApiClientVatPayerData vatPayerData_21609147 = response.Found
@@ -421,12 +422,25 @@ namespace MyClar.AnafApiClient.NET.Tests
 
 		private IAnafVatPayerDataLookupClient GetAnafVatPayerDataApiClient()
 		{
+			IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options = 
+				CreateOptions();
+
 			return new DefaultAnafVatPayerDataLookupClient(
-				new NewtonSoftJsonAnafVatPayerDataLookupClientSerializer(),
-				new HttpClientAnafVatPayerDataLookupClientTransport( AnafApiClientUrls.V8Url,
-					new StandaloneHttpClientWrapperFactory(),
-					Encoding.UTF8 )
+				new NewtonSoftJsonAnafVatPayerDataLookupClientSerializer( options ),
+				new HttpClientAnafVatPayerDataLookupClientTransport( options,
+					new StandaloneHttpClientWrapperFactory() )
 			);
+		}
+
+		private IOptions<HttpClientAnafVatPayerDataLookupClientOptions> CreateOptions()
+		{
+			HttpClientAnafVatPayerDataLookupClientOptions options =
+				new HttpClientAnafVatPayerDataLookupClientOptions();
+
+			options.Endpoint = AnafApiClientUrls.V8Url;
+			options.Encoding = Encoding.UTF8;
+
+			return Options.Create( options );
 		}
 	}
 }

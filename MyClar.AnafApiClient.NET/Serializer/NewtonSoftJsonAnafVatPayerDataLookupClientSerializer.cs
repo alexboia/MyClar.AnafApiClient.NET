@@ -1,4 +1,5 @@
-﻿using MyClar.AnafApiClient.NET.Data;
+﻿using Microsoft.Extensions.Options;
+using MyClar.AnafApiClient.NET.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -10,16 +11,18 @@ namespace MyClar.AnafApiClient.NET.Serializer
 {
 	public class NewtonSoftJsonAnafVatPayerDataLookupClientSerializer : IAnafVatPayerDataLookupClientSerializer
 	{
-		private const string DefaultDateFormatString = "yyyy-MM-dd";
+		private const string DefaultDateFormatString = AnafApiClientDefaults.DefaultDateFormatString;
 
 		private readonly string mDateFormatString;
 
-		public NewtonSoftJsonAnafVatPayerDataLookupClientSerializer( string dateFormatString = DefaultDateFormatString )
+		public NewtonSoftJsonAnafVatPayerDataLookupClientSerializer( IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options )
 		{
+			if (options == null || options.Value == null)
+				throw new ArgumentNullException( nameof( options ) );
 
-			mDateFormatString = dateFormatString;
-			if (string.IsNullOrWhiteSpace( dateFormatString ))
-				dateFormatString = DefaultDateFormatString;
+			mDateFormatString = options.Value.DateFormat;
+			if (string.IsNullOrWhiteSpace( mDateFormatString ))
+				mDateFormatString = DefaultDateFormatString;
 		}
 
 		public AnafApiClientVatPayerLookupResponse DeserializeResponseData( string responseBodyJson )
@@ -41,7 +44,7 @@ namespace MyClar.AnafApiClient.NET.Serializer
 		{
 			return new JsonSerializerSettings()
 			{
-				DateFormatString = "yyyy-MM-dd"
+				DateFormatString = mDateFormatString
 			};
 		}
 	}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,18 +16,17 @@ namespace MyClar.AnafApiClient.NET.Transport
 
 		private readonly Encoding mEncoding;
 
-		public HttpClientAnafVatPayerDataLookupClientTransport( string endpoint,
-			IHttpClientFactory httpClientFactory,
-			Encoding encoding )
+		public HttpClientAnafVatPayerDataLookupClientTransport( IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options,
+			IHttpClientFactory httpClientFactory )
 		{
-			if (string.IsNullOrWhiteSpace( endpoint ))
-				throw new ArgumentNullException( nameof( endpoint ) );
+			if (options == null || options.Value == null)
+				throw new ArgumentNullException( nameof( options ) );
 
-			mEndpoint = endpoint;
 			mHttpClientFactory = httpClientFactory
 				?? throw new ArgumentNullException( nameof( httpClientFactory ) );
-			mEncoding = encoding
-				?? throw new ArgumentNullException( nameof( encoding ) );
+
+			mEndpoint = options.Value.Endpoint;
+			mEncoding = options.Value.Encoding;
 		}
 
 		public async Task<string> DoWebServiceRequestAsync( string requestBody )
