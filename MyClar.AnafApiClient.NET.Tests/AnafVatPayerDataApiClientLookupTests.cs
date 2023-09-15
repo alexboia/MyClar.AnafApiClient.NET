@@ -17,6 +17,53 @@ namespace MyClar.AnafApiClient.NET.Tests
 	public class AnafVatPayerDataApiClientLookupTests
 	{
 		[Test]
+		public async Task Test_TryGetLookupData_WhenInvalidCodesGiven_ValidCodeWithPrefix()
+		{
+			IAnafVatPayerDataLookupClient client =
+				GetAnafVatPayerDataApiClient();
+
+			/*
+			 * If a prefix is provide to a VAT code (eg. RO), 
+			 * the Web service returns an HTMl response with an error message, 
+			 * not a JSON response:
+			 *	<html>
+			 *		<head>
+			 *			<title>Request Rejected</title>
+			 *		</head>
+			 *
+			 *		<body>The requested URL was rejected. Please consult with your
+			 *			administrator.<br><br>Your support ID is: 9278836106349682373<br><br><a href='javascript:history.back();'>
+			 *			[Go Back]</a>
+			 *		</body>
+			 * 
+			 *		</html>
+			 */
+
+			AnafApiClientVatPayerLookupResponse response = await client
+				.LookupVatPayerDataAsync( new AnafApiClientVatPayerLookupInput( "RO44932197" ) );
+
+			Assert.NotNull( response );
+			Assert.IsFalse( response.IsSuccessful );
+			Assert.AreEqual( "Invalid response received", response.Message );
+			Assert.AreEqual( 501, response.Code );
+		}
+
+		[Test]
+		public async Task Test_TryGetLookupData_WhenInvalidCodesGiven_NumericCodeButTooLong()
+		{
+			IAnafVatPayerDataLookupClient client =
+				GetAnafVatPayerDataApiClient();
+
+			AnafApiClientVatPayerLookupResponse response = await client
+				.LookupVatPayerDataAsync( new AnafApiClientVatPayerLookupInput( "2160914712" ) );
+
+			Assert.NotNull( response );
+			Assert.IsFalse( response.IsSuccessful );
+			Assert.AreEqual( 501, response.Code );
+		}
+
+
+		[Test]
 		public async Task Test_CanGetLookupData_WhenValidVatCodesGiven_OneVatCode_NonVatPayer()
 		{
 			DateTime now = DateTime.Now;
