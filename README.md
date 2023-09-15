@@ -58,7 +58,8 @@ Notes:
 - The web-service accepts and returns dates using the `yyyy-MM-dd` format, but it can be configured to be something else [using the options object](https://github.com/alexboia/MyClar.AnafApiClient.NET/blob/main/MyClar.AnafApiClient.NET/DefaultAnafVatPayerDataLookupClientFactory.cs);
 - There is no `IHttpClientFactory` implementation provided, but you can use the same library [used in the tests project](https://github.com/alexboia/MyClar.AnafApiClient.NET/blob/main/MyClar.AnafApiClient.NET.Tests/Support/StandaloneHttpClientWrapperFactory.cs);
 - You can provide your own factory implementation or not use a factory at all;
-- Options (`HttpClientAnafVatPayerDataLookupClientOptions`) are also injectable, provided using the `IOptions<>` interface.
+- Options (`HttpClientAnafVatPayerDataLookupClientOptions`) are also injectable, provided using the `IOptions<>` interface;
+- Do not pass the prefix to the VAT code (eg. the "RO" part), because the web service will yield an error, even if the code itself is vald.
 
 Usage examples can also be found in the [tests project](https://github.com/alexboia/MyClar.AnafApiClient.NET/tree/main/MyClar.AnafApiClient.NET.Tests) (some values have been obfuscated, be sure to grab them first and replace them in the source code).
 
