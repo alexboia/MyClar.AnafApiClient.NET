@@ -9,7 +9,7 @@ namespace MyClar.AnafApiClient.NET
 	public class DefaultAnafVatPayerDataLookupClient : IAnafVatPayerDataLookupClient
 	{
 		private const string WsHttpRequestFailed = "HTTP Request failed";
-		
+
 		private const string WsInvalidResponseReceived = "Invalid response received";
 
 		private readonly IAnafVatPayerDataLookupClientSerializer mSerializer;
@@ -46,11 +46,11 @@ namespace MyClar.AnafApiClient.NET
 			string responseBodyJson = await DoWebServiceRequestAsync( requestJson );
 
 			return !string.IsNullOrWhiteSpace( responseBodyJson )
-				? DeserializeResponseData( responseBodyJson ) ?? InvalidResponseReceived()
+				? DeserializeResponseData( responseBodyJson ) ?? InvalidResponseReceived( responseBodyJson )
 				: RequestFailed();
 		}
 
-		protected virtual async Task<string> DoWebServiceRequestAsync(string requestJson)
+		protected virtual async Task<string> DoWebServiceRequestAsync( string requestJson )
 		{
 			try
 			{
@@ -62,7 +62,7 @@ namespace MyClar.AnafApiClient.NET
 			}
 		}
 
-		protected virtual AnafApiClientVatPayerLookupResponse DeserializeResponseData(string responseBodyJson)
+		protected virtual AnafApiClientVatPayerLookupResponse DeserializeResponseData( string responseBodyJson )
 		{
 			try
 			{
@@ -84,9 +84,10 @@ namespace MyClar.AnafApiClient.NET
 			return response;
 		}
 
-		protected virtual AnafApiClientVatPayerLookupResponse InvalidResponseReceived()
+		protected virtual AnafApiClientVatPayerLookupResponse InvalidResponseReceived( string rawResponse )
 		{
 			AnafApiClientVatPayerLookupResponse response = new AnafApiClientVatPayerLookupResponse();
+			response.RawResponse = rawResponse;
 			response.Message = WsInvalidResponseReceived;
 			response.Found = new List<AnafApiClientVatPayerData>();
 			response.NotFound = new List<string>();

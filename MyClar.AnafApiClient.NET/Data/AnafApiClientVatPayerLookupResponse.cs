@@ -39,5 +39,11 @@ namespace MyClar.AnafApiClient.NET.Data
                 return Code == 200;
             }
         }
+
+        [JsonIgnore]
+        public string RawResponse
+        {
+            get;set;
+        }
     }
 }

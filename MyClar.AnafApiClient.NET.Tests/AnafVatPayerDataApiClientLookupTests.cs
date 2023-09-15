@@ -42,6 +42,10 @@ namespace MyClar.AnafApiClient.NET.Tests
 			AnafApiClientVatPayerLookupResponse response = await client
 				.LookupVatPayerDataAsync( new AnafApiClientVatPayerLookupInput( "RO44932197" ) );
 
+			//Also: response.RawResponse is populated with whatever
+			//	has been received from the server,
+			//	only in case of deserialization failures
+
 			Assert.NotNull( response );
 			Assert.IsFalse( response.IsSuccessful );
 			Assert.AreEqual( "Invalid response received", response.Message );
