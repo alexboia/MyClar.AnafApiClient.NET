@@ -15,7 +15,7 @@ namespace MyClar.AnafApiClient.NET.Serializer
 
 		private readonly string mDateFormatString;
 
-		public NewtonSoftJsonAnafVatPayerDataLookupClientSerializer( IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options )
+		public NewtonSoftJsonAnafVatPayerDataLookupClientSerializer( IOptions<AnafApiClientOptions> options )
 		{
 			if (options == null || options.Value == null)
 				throw new ArgumentNullException( nameof( options ) );

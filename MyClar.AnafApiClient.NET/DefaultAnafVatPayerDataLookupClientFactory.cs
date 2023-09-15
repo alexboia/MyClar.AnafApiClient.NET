@@ -20,7 +20,7 @@ namespace MyClar.AnafApiClient.NET
 
 		public IAnafVatPayerDataLookupClient CreateClient()
 		{
-			IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options = 
+			IOptions<AnafApiClientOptions> options = 
 				CreateOptions();
 
 			return new DefaultAnafVatPayerDataLookupClient(
@@ -32,10 +32,10 @@ namespace MyClar.AnafApiClient.NET
 			);
 		}
 
-		private IOptions<HttpClientAnafVatPayerDataLookupClientOptions> CreateOptions()
+		private IOptions<AnafApiClientOptions> CreateOptions()
 		{
-			HttpClientAnafVatPayerDataLookupClientOptions optionsValue =
-				new HttpClientAnafVatPayerDataLookupClientOptions();
+			AnafApiClientOptions optionsValue =
+				new AnafApiClientOptions();
 
 			optionsValue.DateFormat = 
 				AnafApiClientDefaults.DefaultDateFormatString;
@@ -44,7 +44,7 @@ namespace MyClar.AnafApiClient.NET
 			optionsValue.Encoding =
 				Encoding.UTF8;
 
-			IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options =
+			IOptions<AnafApiClientOptions> options =
 				Options.Create( optionsValue );
 			return options;
 		}

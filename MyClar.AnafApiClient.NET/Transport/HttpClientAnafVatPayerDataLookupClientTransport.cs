@@ -16,7 +16,7 @@ namespace MyClar.AnafApiClient.NET.Transport
 
 		private readonly Encoding mEncoding;
 
-		public HttpClientAnafVatPayerDataLookupClientTransport( IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options,
+		public HttpClientAnafVatPayerDataLookupClientTransport( IOptions<AnafApiClientOptions> options,
 			IHttpClientFactory httpClientFactory )
 		{
 			if (options == null || options.Value == null)

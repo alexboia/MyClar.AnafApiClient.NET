@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyClar.AnafApiClient.NET
 {
-	public class HttpClientAnafVatPayerDataLookupClientOptions
+	public class AnafApiClientOptions
 	{
 		public string Endpoint
 		{

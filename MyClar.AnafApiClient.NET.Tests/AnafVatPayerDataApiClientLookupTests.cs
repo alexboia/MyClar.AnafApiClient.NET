@@ -170,7 +170,7 @@ namespace MyClar.AnafApiClient.NET.Tests
 
 		private IAnafVatPayerDataLookupClient GetAnafVatPayerDataApiClient()
 		{
-			IOptions<HttpClientAnafVatPayerDataLookupClientOptions> options = 
+			IOptions<AnafApiClientOptions> options = 
 				CreateOptions();
 
 			return new DefaultAnafVatPayerDataLookupClient(
@@ -180,10 +180,10 @@ namespace MyClar.AnafApiClient.NET.Tests
 			);
 		}
 
-		private IOptions<HttpClientAnafVatPayerDataLookupClientOptions> CreateOptions()
+		private IOptions<AnafApiClientOptions> CreateOptions()
 		{
-			HttpClientAnafVatPayerDataLookupClientOptions options =
-				new HttpClientAnafVatPayerDataLookupClientOptions();
+			AnafApiClientOptions options =
+				new AnafApiClientOptions();
 
 			options.Endpoint = AnafApiClientUrls.V8Url;
 			options.Encoding = Encoding.UTF8;
